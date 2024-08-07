@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: spring_boot
+  main:
+    allow-circular-references: true
+  shell:
+      interactive:
+        enabled: true
+
+app:
+  right_answers_number: 3
+  questions_number: 5
+  questions_file_path: questions.properties
+  locale: ru
+
+
+
+

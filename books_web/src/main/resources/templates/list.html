@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+      <h1>Books:</h1>
+      <table class="books">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <!--<tbody>
+          <tr th:each="book : ${books}">
+              <td th:text="${book.id}">1</td>
+              <td th:text="${book.author.name}">Pushkin</td>
+              <td th:text="${book.genre.name}">Roman</td>
+              <td>
+                  <span th:each="comment : ${book.comments}">
+                        <span th:text="${comment.text}">test</span><br>
+                  </span>
+              </td>
+              <td>
+                  <a th:href="@{/edit(id=${book.id})}">Edit</a>
+              </td>
+          </tr>
+        </tbody>-->
+      </table>
+      <script>
+          $(function () {
+              $.get('/api/books').done(function (books) {
+                  books.forEach(function (book) {
+                      $('tbody').append(`
+                    <tr>
+                        <td>${book.id}</td>
+                        <td>${book.name}</td>
+                    </tr>
+                `)
+                  });
+              })
+          });
+      </script>
+
+      <form th:action="@{/create}">
+          <div>
+              <button type="submit">Create</button>
+          </div>
+      </form>
+</body>
+</html>

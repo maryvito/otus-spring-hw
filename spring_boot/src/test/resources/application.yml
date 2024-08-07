@@ -1,0 +1,14 @@
+spring:
+  shell:
+    interactive:
+      enabled: false
+  main:
+    allow-circular-references: true
+
+app.right.answers.number: 3
+app.questions.number: 5
+app.questions.file.path: questions.properties
+app.locale: ru
+
+
+

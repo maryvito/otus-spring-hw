@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit book</title>
+</head>
+<body>
+
+<form th:object="${book}" method="post" th:action="@{/edit}">
+    <h1>Book Info</h1>
+
+    <div>
+        <label for="id-input">ID:</label>
+        <input id="id-input" name="id" type="text" value="1" th:value="${book.id}"/>
+    </div>
+
+    <div>
+        <label for="name-input">Name:</label>
+        <input id="name-input" name="name" type="text" value="Капитанская дочка" th:value="${book.name}"/>
+    </div>
+
+    <div>
+        <label for="author-input">Author:</label>
+        <select id="author-input" th:field="${book.author}">
+            <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name}">Test</option>
+        </select>
+    </div>
+
+<!--    <div>-->
+<!--        <label for="genre-input">Genre:</label>-->
+<!--        <input id="genre-input" type="text" value="Роман" th:value="*{genre.name}"/>-->
+<!--    </div>-->
+
+    <div>
+        <label>Comments</label>
+        <table>
+            <thead>
+            <tr>
+                <th>ID:</th>
+                <th>BookID:</th>
+                <th>Text:</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="comment, i: ${book.comments}">
+                <td>
+                    <input th:field="${book.comments[__${i.index}__].id}" th:value="${book.comments[__${i.index}__].id}">
+                </td>
+                <td>
+                    <input th:field="${book.comments[__${i.index}__].bookId}" th:value="${book.comments[__${i.index}__].bookId}">
+                </td>
+                <td>
+                    <input type="text" th:field="${book.comments[__${i.index}__].text}" th:value="${comment.text}">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+            <!--<div>
+                <input th:each="comment: ${book.comments}" th:field="${comment.text}" type="text" th:text="${comment.text}"/>
+            </div>-->
+
+    <div>
+        <button type="submit">Save</button>
+    </div>
+
+</form>
+
+<form th:action="@{remove(id=${book.id})}" method="post">
+    <div>
+        <button type="submit">Remove</button>
+    </div>
+</form>
+
+</body>
+</html>

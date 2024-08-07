@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  initialization-mode: always
+
+
+  shell:
+    interactive:
+      enabled: false
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+
+    show-sql: true
+    format_sql: true
+
+
+  data:
+    mongodb:
+      authentication-database: none
+      database: library_db
+      port: 27017
+      host: localhost
+
+mongock:
+  runner-type: "ApplicationRunner" # default
+  #runner-type: "InitializingBean"
+  change-logs-scan-package:
+    - com.example.books.mongo.mongock.changelog
+
+
+
